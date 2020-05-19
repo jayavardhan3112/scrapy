@@ -619,6 +619,9 @@ Response objects
     :param ip_address: The IP address of the server from which the Response originated.
     :type ip_address: :class:`ipaddress.IPv4Address` or :class:`ipaddress.IPv6Address`
 
+    .. versionadded:: 2.1.0
+       The ``ip_address`` parameter.
+
     .. attribute:: Response.url
 
         A string containing the URL of the response.
@@ -709,6 +712,8 @@ Response objects
         Only populated for ``https`` responses, ``None`` otherwise.
 
     .. attribute:: Response.ip_address
+
+        .. versionadded:: 2.1.0
 
         The IP address of the server from which the Response originated.
         
@@ -828,11 +833,6 @@ TextResponse objects
     .. automethod:: TextResponse.follow
 
     .. automethod:: TextResponse.follow_all
-
-    .. method:: TextResponse.body_as_unicode()
-
-        The same as :attr:`text`, but available as a method. This method is
-        kept for backward compatibility; please prefer ``response.text``.
 
 
 HtmlResponse objects
