@@ -234,9 +234,10 @@ class MockDNSResolver:
         return [answer], [], []
 
     def query(self, query, timeout=None):
-        if query.type in (dns.A, dns.ANY):
+        if query.type == dns.A:
             return defer.succeed(self._resolve(query.name.name))
-        return defer.fail(error.DomainError())
+        return defer.fail(Exception('Unexpected DNS query type: {}'
+                                    .format(query.type.__qualname__)))
 
     def lookupAllRecords(self, name, timeout=None):
         return defer.succeed(self._resolve(name))
