@@ -234,7 +234,9 @@ class MockDNSResolver:
         return [answer], [], []
 
     def query(self, query, timeout=None):
-        return defer.succeed(self._resolve(query.name.name))
+        if query.type in (dns.A, dns.ANY):
+            return defer.succeed(self._resolve(query.name.name))
+        return defer.fail(error.DomainError())
 
     def lookupAllRecords(self, name, timeout=None):
         return defer.succeed(self._resolve(name))
